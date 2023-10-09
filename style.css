@@ -1,0 +1,17 @@
+
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    width: 50vh;
+}
+
+.grid-sub-container{
+    display: flex;
+    width: 50vh;
+}
+
+.grid {
+    background-color: grey;
+    cursor: pointer;
+}
