@@ -53,6 +53,7 @@ body {
     background-color: grey;
 }
 
+.grid-size,
 .btn {
     height: 40px;
     width: 150px;
@@ -62,6 +63,11 @@ body {
     font-weight: bolder;
 }
 
+.grid-size {
+    padding: 0;
+    text-align: center;
+}
+.grid-size:hover,
 .btn:hover {
     background-color: darkgrey;
     border-width: 0;
