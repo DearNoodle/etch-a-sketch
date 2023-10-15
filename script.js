@@ -1,6 +1,6 @@
 
 let gridSize = 16;
-let colorChangeRate = 3;
+let colorChangeRate = 5;
 
 let gridLength = 500/gridSize;
 const gridContainer = document.querySelector(".grid-container");
@@ -27,26 +27,13 @@ Grids.forEach((element) => {
 })
 
 let hue = Math.floor(Math.random() * 360);
+let lastGridEntered;
 let mouseDown;
 let mouseDownListener = (event) => {
     mouseDown = true;
-    if (currentMode === "normal") {
-        event.target.style.backgroundColor = "black";
-    }
-    if (currentMode === "erase") {
-        event.target.style.backgroundColor = "lightgrey";
-    }
-    if (currentMode === "color") {
-        hue = (hue + colorChangeRate) % 360;
-        event.target.style.backgroundColor = `hsl(${hue}, 100%, 50%)`;
-    }
     event.preventDefault();
-};
-let mouseUpListener = () => {
-    mouseDown = false;
-};
-let mouseMoveListener = (event) => {
-    if (mouseDown === true){
+    if (event.target !== lastGridEntered) {
+        lastGridEntered = event.target;
         if (currentMode === "normal") {
             event.target.style.backgroundColor = "black";
         }
@@ -56,6 +43,26 @@ let mouseMoveListener = (event) => {
         if (currentMode === "color") {
             hue = (hue + colorChangeRate) % 360;
             event.target.style.backgroundColor = `hsl(${hue}, 100%, 50%)`;
+        }
+    }
+};
+let mouseUpListener = () => {
+    mouseDown = false;
+};
+let mouseMoveListener = (event) => {
+    if (mouseDown === true){
+        if (event.target !== lastGridEntered) {
+            lastGridEntered = event.target;
+            if (currentMode === "normal") {
+                event.target.style.backgroundColor = "black";
+            }
+            if (currentMode === "erase") {
+                event.target.style.backgroundColor = "lightgrey";
+            }
+            if (currentMode === "color") {
+                hue = (hue + colorChangeRate) % 360;
+                event.target.style.backgroundColor = `hsl(${hue}, 100%, 50%)`;
+            }
         }
     }
 };
